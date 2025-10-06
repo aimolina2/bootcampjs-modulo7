@@ -3,6 +3,7 @@ import {
   generarNumeroAleatorio,
   generarNumeroCarta,
   obtenerPuntosCarta,
+  gestionarEstadoPartida,
 } from "./motor";
 import { partida } from "./model";
 import { vi } from "vitest";
@@ -63,6 +64,34 @@ describe("generarNumeroCarta", () => {
     expect(resultado).toBe(numeroCartaEsperado);
   });
 });
+
+// test para la función gestionarEstadoPartida que nos indica si el usuario gana, pierde o sigue jugando
+
+describe("gestionarEstadoPartida", () => {
+  it("Debería devolver 'ganar' si la puntuación es 7.5", () => {
+    const resultadoEsperado: string = "ganar";
+    const puntuacion: number = 7.5;
+    vi.spyOn(partida, "puntuacion", "get").mockReturnValue(puntuacion);
+    const resultado: string = gestionarEstadoPartida();
+    expect(resultado).toBe(resultadoEsperado);
+  });
+  it("Debería devolver 'perder' si la puntuación es 10", () => {
+    const resultadoEsperado: string = "perder";
+    const puntuacion: number = 10;
+    vi.spyOn(partida, "puntuacion", "get").mockReturnValue(puntuacion);
+    const resultado: string = gestionarEstadoPartida();
+    expect(resultado).toBe(resultadoEsperado);
+  });
+  it("Debería devolver 'seguir_jugando' si la puntuación es 6", () => {
+    const resultadoEsperado: string = "seguir_jugando";
+    const puntuacion: number = 6;
+    vi.spyOn(partida, "puntuacion", "get").mockReturnValue(puntuacion);
+    const resultado: string = gestionarEstadoPartida();
+    expect(resultado).toBe(resultadoEsperado);
+  });
+});
+
+// test para la función obtenerMensajeCuandoMePlanto que nos devuelve un mensaje según la puntuación del usuario
 
 describe("obtenerMensajeCuandoMePlanto", () => {
   it("Debería devolver 'Has sido muy conservador' si la puntuación es 3", () => {

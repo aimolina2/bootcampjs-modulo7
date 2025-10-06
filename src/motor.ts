@@ -74,3 +74,12 @@ export const obtenerMensajeCuandoMePlanto = (): string => {
   }
   return "Ups, algo ha fallado";
 };
+
+export const gestionarEstadoPartida = () => {
+  if (partida.puntuacion === 7.5) {
+    return "ganar";
+  } else if (partida.puntuacion > 7.5) {
+    return "perder";
+  }
+  return "seguir_jugando";
+};

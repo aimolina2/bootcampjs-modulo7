@@ -79,10 +79,10 @@ export const desactivarFuturoBoton = (): void => {
 };
 
 export const comprobarPartida = (): void => {
-  if (partida.puntuacion === 7.5) {
+  if (partida.estadoPartida === "ganar") {
     mostrarMensaje("¡Lo has clavado! ¡Enhorabuena! 🎉");
     activarModoNuevaPartida();
-  } else if (partida.puntuacion > 7.5) {
+  } else if (partida.estadoPartida === "perder") {
     mostrarMensaje("☠️☠️☠️ GAME OVER Te has pasado ☠️☠️☠️");
     activarModoNuevaPartida();
   }
